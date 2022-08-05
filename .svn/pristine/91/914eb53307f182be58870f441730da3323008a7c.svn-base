@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nclab.emp.mappers.fmapper">
+   <select id="familyInfo" resultType="com.nclab.emp.vo.familyinfoVO">
+      SELECT a.EMPCD , b.VALUE , c.FAMILYNAME 
+      FROM EMPBASICS_T a,
+         COMCD_T b,
+         FAMILYINFO_T c
+      WHERE b.div = 'rela'
+      AND a.EMPCD = c.EMPCD 
+      AND c.RELACD = b.CODE
+   </select>   
+
+   </mapper>

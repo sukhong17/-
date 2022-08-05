@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nclab.emp.empBasicsMapper">
+	<select id="empBasicsList" resultType="com.nclab.emp.vo.empBasicsVO">
+		select a.empcd, a.empnm, a.empzipcd, b.value
+		from empbasics_t a,
+		comcd_t b
+		where b.div = 'zip'
+		and a.empzipcd = b.code
+	</select>
+
+</mapper>

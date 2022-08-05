@@ -1,0 +1,33 @@
+package com.nclab.emp.controller;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.nclab.emp.service.empBasicsService;
+import com.nclab.emp.vo.empBasicsVO;
+
+@Controller
+//@RequestMapping(value = "/emp/*")
+public class empBasicsController {
+	
+	@Inject
+	empBasicsService service;
+	
+	@RequestMapping(value = "/empHome")
+	public String empBasicsHome (Model model) {
+		System.out.println("empHome controller");
+		return "/empBasics/empHome";
+	}
+
+	@RequestMapping(value = "/empList")
+	@ResponseBody
+	public List<empBasicsVO> getEmpList () {
+		return service.empBasicsList();
+	}
+}

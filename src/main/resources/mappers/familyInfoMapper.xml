@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nclab.emp.mappers.familyInfoMapper">
+
+	<select id="familyInfo" resultType="FamilyVO">
+		select B.empcd, A.relacd, C.value,
+		DECODE(A.relacd, '1', B.empnm, D.familyname) familyname
+		from empfamily_t A, empbasics_t B, comcd_t C, familyinfo_t D
+		where C.div = 'rela'
+		and B.empcd = A.empcd
+		and A.empcd = D.empcd(+)
+		and A.relacd = D.relacd(+)
+		and C.code = A.relacd
+		order by B.EMPCD 
+	</select>
+
+</mapper>
